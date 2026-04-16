@@ -1,0 +1,880 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>贵州4天3晚团建攻略</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0c0f0a;
+            --text: #fafaf9;
+            --text-muted: #a8a29e;
+            --accent: #22c55e;
+            --accent-dim: rgba(34,197,94,0.15);
+            --border: rgba(255,255,255,0.08);
+            --radius: 1.25rem;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Outfit', -apple-system, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        .container { max-width: 1300px; margin: 0 auto; padding: 0 24px; }
+
+        /* Hero */
+        .hero {
+            min-height: 65vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            padding: 60px 0;
+        }
+
+        .hero-bg {
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+        }
+
+        .hero-bg video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(0.45) saturate(1.1);
+        }
+
+        .hero-gradient {
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse at center, rgba(12,15,10,0.3) 0%, rgba(12,15,10,0.85) 70%, rgba(12,15,10,0.98) 100%);
+        }
+
+        .hero-content { position: relative; z-index: 1; text-align: center; display: flex; flex-direction: column; align-items: center; }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 20px;
+            background: var(--accent);
+            border-radius: 100px;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--bg);
+            margin-bottom: 24px;
+        }
+
+        .hero h1 {
+            text-align: center;
+            font-size: clamp(3rem, 8vw, 6rem);
+            font-weight: 800;
+            letter-spacing: -0.04em;
+            line-height: 0.95;
+            margin-bottom: 20px;
+        }
+
+        .hero h1 span {
+            background: linear-gradient(135deg, var(--accent) 0%, #4ade80 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-sub { font-size: 1.1rem; color: var(--text-muted); max-width: 500px; margin-bottom: 32px; }
+
+        .hero-meta { display: flex; gap: 16px; flex-wrap: wrap; }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 20px;
+            background: rgba(255,255,255,0.08);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--border);
+            border-radius: 100px;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .meta-item svg { width: 18px; height: 18px; stroke: var(--accent); stroke-width: 1.5; fill: none; }
+
+        /* Section Headers */
+        .section-clickable {
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            transition: opacity 0.2s;
+        }
+
+        .section-clickable:hover { opacity: 0.8; }
+
+        .section-clickable svg {
+            width: 20px;
+            height: 20px;
+            stroke: var(--text-muted);
+            stroke-width: 1.5;
+            fill: none;
+            transition: transform 0.3s;
+        }
+
+        .section-clickable.active svg { transform: rotate(90deg); }
+
+        .section-label {
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 12px;
+        }
+
+        .section-title { font-size: 2rem; font-weight: 700; letter-spacing: -0.02em; }
+
+        /* Days Section */
+        .days-section { padding: 60px 0; }
+        .section-header { margin-bottom: 32px; }
+
+        .days-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+        }
+
+        @media (max-width: 1024px) { .days-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 640px) { .days-grid { grid-template-columns: 1fr; } }
+
+        .day-card {
+            position: relative;
+            height: 360px;
+            border-radius: var(--radius);
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.16,1,0.3,1);
+        }
+
+        .day-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 60px rgba(34,197,94,0.2);
+        }
+
+        .day-card img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(0.4) saturate(1);
+            transition: all 0.4s;
+        }
+
+        .day-card:hover img {
+            filter: brightness(0.5) saturate(1.15);
+            transform: scale(1.05);
+        }
+
+        .day-content {
+            position: relative;
+            z-index: 1;
+            height: 100%;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, transparent 70%);
+        }
+
+        .day-num {
+            position: absolute;
+            top: 16px;
+            left: 16px;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            padding: 6px 14px;
+            background: var(--accent);
+            color: var(--bg);
+            border-radius: 100px;
+        }
+
+        .day-card h3 { font-size: 1.3rem; font-weight: 700; margin-bottom: 6px; }
+        .day-card p { font-size: 13px; color: rgba(255,255,255,0.7); margin-bottom: 12px; }
+        .day-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+        .day-tag { padding: 4px 10px; background: rgba(255,255,255,0.15); border-radius: 100px; font-size: 11px; font-weight: 500; }
+
+        /* Overview */
+        .overview-section { padding: 40px 0; display: none; }
+        .overview-section.active { display: block; }
+
+        .timeline { position: relative; padding-left: 40px; }
+        .timeline::before { content: ''; position: absolute; left: 8px; top: 0; bottom: 0; width: 2px; background: var(--border); }
+
+        .timeline-item { position: relative; padding-bottom: 32px; }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -36px;
+            top: 4px;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: var(--accent);
+            border: 3px solid var(--bg);
+        }
+
+        .timeline-day { font-size: 12px; font-weight: 700; color: var(--accent); margin-bottom: 4px; }
+        .timeline-title { font-size: 1.1rem; font-weight: 600; margin-bottom: 4px; }
+        .timeline-desc { font-size: 13px; color: var(--text-muted); }
+
+        /* Food Section */
+        .food-section { padding: 60px 0; }
+
+        .food-card {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 32px;
+            margin-top: 24px;
+        }
+
+        .food-table { width: 100%; border-collapse: collapse; }
+
+        .food-table th, .food-table td {
+            padding: 14px 16px;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+            font-size: 14px;
+        }
+
+        .food-table th {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .food-table td:first-child { color: var(--accent); font-weight: 600; min-width: 100px; }
+
+        .food-table input {
+            width: 100%;
+            background: transparent;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 10px 12px;
+            color: var(--text);
+            font-size: 14px;
+            font-family: inherit;
+            transition: all 0.2s;
+        }
+
+        .food-table input:focus {
+            outline: none;
+            border-color: var(--accent);
+            background: var(--accent-dim);
+        }
+
+        .food-table input::placeholder { color: var(--text-muted); opacity: 0.6; }
+
+        .food-note {
+            font-size: 12px;
+            color: var(--text-muted);
+            margin-top: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .food-note svg { width: 16px; height: 16px; stroke: var(--text-muted); stroke-width: 1.5; fill: none; }
+
+        /* Team Section */
+        .team-section { padding: 60px 0; }
+        .team-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 32px; }
+
+        @media (max-width: 640px) { .team-grid { grid-template-columns: 1fr; } }
+
+        .team-card {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 24px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .team-card:hover { border-color: var(--accent); background: var(--accent-dim); }
+
+        .team-avatar {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent) 0%, #16a34a 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 16px;
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--bg);
+        }
+
+        .team-card h4 { font-size: 1rem; font-weight: 600; margin-bottom: 4px; }
+        .team-card p { font-size: 13px; color: var(--accent); }
+
+        /* Checklist */
+        .checklist-section { padding: 60px 0; border-top: 1px solid var(--border); }
+
+        .checklist-card {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 24px;
+            margin-bottom: 16px;
+        }
+
+        .checklist-card h4 {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .checklist-card h4 svg { width: 18px; height: 18px; stroke: var(--accent); stroke-width: 1.5; fill: none; }
+
+        .check-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 0;
+            border-bottom: 1px solid var(--border);
+            font-size: 14px;
+        }
+
+        .check-item:last-child { border-bottom: none; }
+
+        .check-box { width: 16px; height: 16px; border: 1.5px solid var(--border); border-radius: 4px; flex-shrink: 0; }
+
+        .owner-tag {
+            margin-left: auto;
+            font-size: 11px;
+            padding: 2px 8px;
+            border-radius: 100px;
+            font-weight: 500;
+        }
+
+        .owner-caiwu { background: rgba(239,68,68,0.2); color: #fca5a5; }
+        .owner-houqin { background: rgba(59,130,246,0.2); color: #93c5fd; }
+        .owner-huodong { background: rgba(34,197,94,0.2); color: #86efac; }
+
+        /* Budget Link - Taste Design */
+        .budget-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 4px 12px;
+            background: linear-gradient(135deg, rgba(34,197,94,0.15) 0%, rgba(34,197,94,0.08) 100%);
+            border: 1px solid rgba(34,197,94,0.3);
+            border-radius: 100px;
+            color: var(--accent);
+            font-size: 13px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .budget-link:hover {
+            background: linear-gradient(135deg, rgba(34,197,94,0.25) 0%, rgba(34,197,94,0.15) 100%);
+            border-color: var(--accent);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(34,197,94,0.2);
+        }
+
+        .budget-link svg {
+            width: 14px;
+            height: 14px;
+            stroke: currentColor;
+            stroke-width: 2;
+            fill: none;
+            transition: transform 0.3s;
+        }
+
+        .budget-link:hover svg {
+            transform: translateX(2px);
+        }
+
+        /* Budget Modal */
+        .budget-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+
+        @media (max-width: 640px) { .budget-grid { grid-template-columns: 1fr; } }
+
+        .budget-item {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 20px;
+            transition: all 0.3s;
+        }
+
+        .budget-item:hover { border-color: var(--accent); background: var(--accent-dim); }
+
+        .budget-item-label { font-size: 12px; color: var(--text-muted); margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.05em; }
+
+        .budget-item-value { font-size: 1.5rem; font-weight: 700; color: var(--text); }
+
+        .budget-item-value small { font-size: 14px; color: var(--text-muted); font-weight: 400; }
+
+        .budget-total {
+            background: linear-gradient(135deg, var(--accent) 0%, #16a34a 100%);
+            border-radius: 16px;
+            padding: 24px;
+            text-align: center;
+            margin-bottom: 24px;
+        }
+
+        .budget-total-label { font-size: 14px; color: rgba(255,255,255,0.8); margin-bottom: 8px; }
+
+        .budget-total-value { font-size: 2.5rem; font-weight: 800; color: white; }
+
+        .budget-total-note { font-size: 12px; color: rgba(255,255,255,0.6); margin-top: 8px; }
+
+        .budget-detail-table { width: 100%; }
+
+        .budget-detail-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 0;
+            border-bottom: 1px solid var(--border);
+            font-size: 14px;
+        }
+
+        .budget-detail-row:last-child { border-bottom: none; }
+        .budget-detail-row span:first-child { color: var(--text-muted); }
+        .budget-detail-row span:last-child { font-weight: 600; }
+
+        /* Modal */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.9);
+            z-index: 1000;
+            display: none;
+            opacity: 0;
+            transition: opacity 0.3s;
+            overflow-y: auto;
+            padding: 40px 24px;
+        }
+
+        .modal-overlay.active { display: block; opacity: 1; }
+
+        .modal {
+            max-width: 680px;
+            margin: 0 auto;
+            background: #141414;
+            border-radius: 1.5rem;
+            border: 1px solid var(--border);
+            overflow: hidden;
+            transform: translateY(20px);
+            transition: transform 0.3s;
+        }
+
+        .modal-overlay.active .modal { transform: translateY(0); }
+
+        .modal-header { position: relative; height: 180px; overflow: hidden; }
+        .modal-header img { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.45); }
+
+        .modal-close {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: rgba(0,0,0,0.5);
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-close svg { width: 18px; height: 18px; stroke: white; stroke-width: 2; }
+
+        .modal-header-content { position: absolute; bottom: 20px; left: 24px; right: 24px; }
+
+        .modal-day {
+            display: inline-block;
+            padding: 4px 12px;
+            background: var(--accent);
+            color: var(--bg);
+            border-radius: 100px;
+            font-size: 11px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .modal-title { font-size: 1.6rem; font-weight: 700; }
+
+        .modal-body { padding: 24px; }
+
+        .detail-section { margin-bottom: 24px; }
+
+        .detail-section h4 {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--accent);
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .detail-section h4 svg { width: 14px; height: 14px; stroke: var(--accent); stroke-width: 1.5; fill: none; }
+
+        .detail-list { list-style: none; }
+
+        .detail-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 10px 0;
+            border-bottom: 1px solid var(--border);
+            font-size: 14px;
+        }
+
+        .detail-list li:last-child { border-bottom: none; }
+
+        .detail-time { color: var(--text-muted); min-width: 60px; font-size: 13px; }
+
+        .detail-ticket {
+            margin-left: auto;
+            padding: 2px 10px;
+            background: var(--accent-dim);
+            color: var(--accent);
+            border-radius: 100px;
+            font-size: 12px;
+            font-weight: 500;
+            white-space: nowrap;
+        }
+
+        /* Map CTA */
+        .map-section { padding: 80px 0; text-align: center; }
+
+        .map-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            padding: 16px 36px;
+            background: var(--accent);
+            color: var(--bg);
+            border-radius: 100px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 15px;
+            transition: all 0.3s;
+        }
+
+        .map-button:hover { transform: translateY(-2px); box-shadow: 0 10px 40px rgba(34,197,94,0.3); }
+
+        .map-button svg { width: 18px; height: 18px; stroke: currentColor; stroke-width: 1.5; fill: none; }
+
+        footer { padding: 40px 0; text-align: center; border-top: 1px solid var(--border); }
+        footer p { font-size: 13px; color: var(--text-muted); }
+    </style>
+</head>
+<body>
+    <!-- Hero -->
+    <section class="hero">
+        <div class="hero-bg"><video src="waterfall.mp4" autoplay muted loop playsinline></video><div class="hero-gradient"></div></div>
+        <div class="container hero-content">
+            <span class="hero-badge">2026.05.15 - 05.18</span>
+            <h1>贵州<br><span>4天3晚</span></h1>
+            <p class="hero-sub">10人团队的自驾探索之旅，从瀑布到苗寨，从洞穴到舌尖</p>
+            <div class="hero-meta">
+                <div class="meta-item"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle></svg>10人</div>
+                <div class="meta-item"><svg viewBox="0 0 24 24"><rect x="1" y="3" width="15" height="13"></rect><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon></svg>自驾</div>
+                <div class="meta-item"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>贵阳</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Days Section -->
+    <section class="days-section">
+        <div class="container">
+            <div class="section-header">
+                <p class="section-label">Itinerary</p>
+                <div class="section-clickable" onclick="toggleOverview()">
+                    <h2 class="section-title">每日行程</h2>
+                    <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                </div>
+            </div>
+
+            <div class="overview-section" id="overview">
+                <div class="timeline">
+                    <div class="timeline-item"><div class="timeline-day">D1 · 5月15日</div><div class="timeline-title">抵达日</div><div class="timeline-desc">机场落地 → 取车 → 青岩古镇 → 入住贵阳</div></div>
+                    <div class="timeline-item"><div class="timeline-day">D2 · 5月16日</div><div class="timeline-title">自然奇观日</div><div class="timeline-desc">黄果树瀑布 → 陡坡塘 → 天星桥 → 返贵阳</div></div>
+                    <div class="timeline-item"><div class="timeline-day">D3 · 5月17日</div><div class="timeline-title">探险日</div><div class="timeline-desc">织金洞探洞 → 西江千户苗寨 → 返回贵阳</div></div>
+                    <div class="timeline-item"><div class="timeline-day">D4 · 5月18日</div><div class="timeline-title">收尾日</div><div class="timeline-desc">黔灵山/甲秀楼 → 购物 → 还车 → 返程</div></div>
+                </div>
+            </div>
+
+            <div class="days-grid" id="daysGrid">
+                <div class="day-card" onclick="openDay('d1')"><img src="images/d1_qingyan.jpg" alt="青岩古镇"><div class="day-content"><span class="day-num">D1</span><h3>青岩古镇</h3><p>抵达日 · 明清古巷 · 卤猪脚</p><div class="day-tags"><span class="day-tag">5月15日</span></div></div></div>
+                <div class="day-card" onclick="openDay('d2')"><img src="images/d2_huangguoshu.jpg" alt="黄果树"><div class="day-content"><span class="day-num">D2</span><h3>黄果树瀑布</h3><p>自然奇观日 · 陡坡塘 · 天星桥</p><div class="day-tags"><span class="day-tag">5月16日</span></div></div></div>
+                <div class="day-card" onclick="openDay('d3')"><img src="images/d3_miaozhai.jpg" alt="苗寨"><div class="day-content"><span class="day-num">D3</span><h3>西江苗寨</h3><p>探险日 · 织金洞 · 长桌宴</p><div class="day-tags"><span class="day-tag">5月17日</span></div></div></div>
+                <div class="day-card" onclick="openDay('d4')"><img src="images/d4_qianling.jpg" alt="黔灵山"><div class="day-content"><span class="day-num">D4</span><h3>收尾日</h3><p>黔灵山/甲秀楼 · 购物 · 返程</p><div class="day-tags"><span class="day-tag">5月18日</span></div></div></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Food Section -->
+    <section class="food-section">
+        <div class="container">
+            <div class="section-header">
+                <p class="section-label">Food</p>
+                <h2 class="section-title">餐饮安排</h2>
+            </div>
+            <div class="food-card">
+                <table class="food-table">
+                    <thead>
+                        <tr>
+                            <th>餐次</th>
+                            <th>地点</th>
+                            <th>推荐餐厅</th>
+                            <th>备注</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>D1 晚餐</td><td><input type="text" placeholder="如：贵阳"></td><td><input type="text" placeholder="如：老凯里酸汤鱼"></td><td><input type="text" placeholder="备注"></td></tr>
+                        <tr><td>D2 午餐</td><td><input type="text" placeholder="如：黄果树景区"></td><td><input type="text" placeholder="如：景区豆花饭"></td><td><input type="text" placeholder="备注"></td></tr>
+                        <tr><td>D2 晚餐</td><td><input type="text" placeholder="如：贵阳"></td><td><input type="text" placeholder="如：二七路夜市"></td><td><input type="text" placeholder="备注"></td></tr>
+                        <tr><td>D3 午餐</td><td><input type="text" placeholder="如：织金洞附近"></td><td><input type="text" placeholder="如：当地农家乐"></td><td><input type="text" placeholder="备注"></td></tr>
+                        <tr><td>D3 晚餐</td><td><input type="text" placeholder="如：西江苗寨"></td><td><input type="text" placeholder="如：苗寨长桌宴"></td><td><input type="text" placeholder="备注"></td></tr>
+                        <tr><td>D4 午餐</td><td><input type="text" placeholder="如：贵阳"></td><td><input type="text" placeholder="如：肠旺面"></td><td><input type="text" placeholder="备注"></td></tr>
+                    </tbody>
+                </table>
+                <p class="food-note">
+                    <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+                    餐饮由羽茸负责安排，点击可填写建议，最终确认后更新
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section class="team-section">
+        <div class="container">
+            <div class="section-header">
+                <p class="section-label">Team</p>
+                <h2 class="section-title">分工</h2>
+            </div>
+            <div class="team-grid">
+                <div class="team-card" onclick="openTeam('caiwu')"><div class="team-avatar">明</div><h4>明杳</h4><p>财务</p></div>
+                <div class="team-card" onclick="openTeam('houqin')"><div class="team-avatar">羽</div><h4>羽茸</h4><p>后勤 + 活动</p></div>
+                <div class="team-card" onclick="openTeam('all')"><div class="team-avatar">众</div><h4>全员</h4><p>参与</p></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Checklist -->
+    <section class="checklist-section">
+        <div class="container">
+            <div class="checklist-card">
+                <h4><svg viewBox="0 0 24 24"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path></svg>财务 - 明杳</h4>
+                <div class="check-item"><div class="check-box"></div><span class="budget-link" onclick="openBudget()">查看预算明细<svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"></polyline></svg></span><span class="owner-tag owner-caiwu">财务</span></div>
+                <div class="check-item"><div class="check-box"></div>支付住宿、租车、门票等统一费用<span class="owner-tag owner-caiwu">财务</span></div>
+                <div class="check-item"><div class="check-box"></div>记录每日支出，行程结束后结算<span class="owner-tag owner-caiwu">财务</span></div>
+                <div class="check-item"><div class="check-box"></div>最终费用多退少补<span class="owner-tag owner-caiwu">财务</span></div>
+            </div>
+            <div class="checklist-card">
+                <h4><svg viewBox="0 0 24 24"><rect x="1" y="3" width="15" height="13"></rect><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon></svg>后勤 - 羽茸</h4>
+                <div class="check-item"><div class="check-box"></div>预约租车（2辆SUV，5/15取车）<span class="owner-tag owner-houqin">后勤</span></div>
+                <div class="check-item"><div class="check-box"></div>预约贵阳酒店（喷水池区域，3晚）<span class="owner-tag owner-houqin">后勤</span></div>
+                <div class="check-item"><div class="check-box"></div>预约织金洞向导（探洞安全）<span class="owner-tag owner-houqin">后勤</span></div>
+                <div class="check-item"><div class="check-box"></div>确认司机名单，安排拼车<span class="owner-tag owner-houqin">后勤</span></div>
+            </div>
+            <div class="checklist-card">
+                <h4><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>活动 - 羽茸</h4>
+                <div class="check-item"><div class="check-box"></div>预约黄果树门票（旺季限流，提前买）<span class="owner-tag owner-huodong">活动</span></div>
+                <div class="check-item"><div class="check-box"></div>预约西江苗寨门票+观光车<span class="owner-tag owner-huodong">活动</span></div>
+                <div class="check-item"><div class="check-box"></div>协调每天出发时间，召集全队<span class="owner-tag owner-huodong">活动</span></div>
+                <div class="check-item"><div class="check-box"></div>安排全程餐饮（见上方餐饮表）<span class="owner-tag owner-huodong">活动</span></div>
+            </div>
+            <div class="checklist-card">
+                <h4><svg viewBox="0 0 24 24"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path></svg>出行必带</h4>
+                <div class="check-item"><div class="check-box"></div>身份证 / 驾驶证（每人）<span class="owner-tag owner-huodong">全员</span></div>
+                <div class="check-item"><div class="check-box"></div>防晒霜 SPF50+<span class="owner-tag owner-huodong">全员</span></div>
+                <div class="check-item"><div class="check-box"></div>雨衣（黄果树水帘洞用）<span class="owner-tag owner-huodong">全员</span></div>
+                <div class="check-item"><div class="check-box"></div>防滑鞋（探洞穿）<span class="owner-tag owner-huodong">全员</span></div>
+                <div class="check-item"><div class="check-box"></div>外套（织金洞内16℃）<span class="owner-tag owner-huodong">全员</span></div>
+                <div class="check-item"><div class="check-box"></div>肠胃药<span class="owner-tag owner-huodong">全员</span></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Map CTA -->
+    <section class="map-section">
+        <a href="https://yangyaolu18-alt.github.io/guizhou-trip/%E5%9C%B0%E5%9B%BE.html" target="_blank" class="map-button">
+            <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+            查看互动地图
+        </a>
+    </section>
+
+    <footer><div class="container"><p>贵州4天3晚团建攻略 · 10人公司团建 · 2026.05.15-05.18</p></div></footer>
+
+    <!-- Modal -->
+    <div class="modal-overlay" id="modal">
+        <div class="modal">
+            <div class="modal-header">
+                <img id="modal-img" src="" alt="">
+                <button class="modal-close" onclick="closeModal()"><svg viewBox="0 0 24 24" fill="none"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></button>
+                <div class="modal-header-content"><span class="modal-day" id="modal-day"></span><h2 class="modal-title" id="modal-title"></h2></div>
+            </div>
+            <div class="modal-body" id="modal-body"></div>
+        </div>
+    </div>
+
+    <script>
+        const dayData = {
+            d1: { day: 'D1 · 5月15日', title: '青岩古镇', img: 'images/d1_qingyan.jpg', schedule: [
+                { time: '14:00', text: '落地贵阳龙洞堡机场', ticket: '' },
+                { time: '14:30', text: '取车（提前预约2辆SUV）', ticket: '' },
+                { time: '15:30', text: '前往青岩古镇', ticket: '' },
+                { time: '16:00', text: '游览青岩古镇', ticket: '40元/人' },
+                { time: '19:00', text: '返回贵阳，入住酒店', ticket: '' },
+                { time: '晚上', text: '自由活动', ticket: '' }
+            ]},
+            d2: { day: 'D2 · 5月16日', title: '黄果树瀑布', img: 'images/d2_huangguoshu.jpg', schedule: [
+                { time: '07:30', text: '出发前往黄果树', ticket: '' },
+                { time: '09:00', text: '游览陡坡塘瀑布', ticket: '' },
+                { time: '10:30', text: '游览天星桥景区', ticket: '' },
+                { time: '12:45', text: '游览大瀑布，进水帘洞', ticket: '160元+50元观光车' },
+                { time: '16:00', text: '返回贵阳', ticket: '' },
+                { time: '晚上', text: '自由活动', ticket: '' }
+            ]},
+            d3: { day: 'D3 · 5月17日', title: '织金洞 + 苗寨', img: 'images/d3_miaozhai.jpg', schedule: [
+                { time: '07:30', text: '出发前往织金洞', ticket: '' },
+                { time: '10:00', text: '织金洞探洞（跟向导）', ticket: '120元/人' },
+                { time: '13:00', text: '出发前往西江苗寨', ticket: '' },
+                { time: '15:00', text: '游览西江千户苗寨', ticket: '110元/人' },
+                { time: '晚上', text: '返回贵阳住宿', ticket: '' }
+            ]},
+            d4: { day: 'D4 · 5月18日', title: '收尾日', img: 'images/d4_qianling.jpg', schedule: [
+                { time: '09:00', text: '黔灵山公园 or 甲秀楼', ticket: '免费' },
+                { time: '中午', text: '午餐', ticket: '' },
+                { time: '下午', text: '购物：辣椒、茶叶，银饰', ticket: '' },
+                { time: '15:00', text: '还车', ticket: '' },
+                { time: '晚上', text: '返程', ticket: '' }
+            ]}
+        };
+
+        function toggleOverview() {
+            document.getElementById('overview').classList.toggle('active');
+            document.querySelector('.section-clickable').classList.toggle('active');
+        }
+
+        function openDay(day) {
+            const data = dayData[day];
+            document.getElementById('modal-img').src = data.img;
+            document.getElementById('modal-day').textContent = data.day;
+            document.getElementById('modal-title').textContent = data.title;
+            let html = '<div class="detail-section"><h4><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>行程安排</h4><ul class="detail-list">';
+            data.schedule.forEach(item => { html += `<li><span class="detail-time">${item.time}</span><span>${item.text}</span>${item.ticket ? `<span class="detail-ticket">${item.ticket}</span>` : ''}</li>`; });
+            html += '</ul></div>';
+            document.getElementById('modal-body').innerHTML = html;
+            document.getElementById('modal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function openTeam(type) {
+            let html = '<div class="detail-section"><h4><svg viewBox="0 0 24 24"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path></svg>';
+            if (type === 'caiwu') {
+                html += '明杳 - 财务职责</h4><ul class="detail-list"><li><span class="detail-time">行前</span><span>统一收取团费</span></li><li><span class="detail-time">行前</span><span>支付住宿、租车、门票费用</span></li><li><span class="detail-time">行中</span><span>记录每日支出</span></li><li><span class="detail-time">返程</span><span>结算，多退少补</span></li>';
+            } else if (type === 'houqin') {
+                html += '羽茸 - 后勤+活动职责</h4><ul class="detail-list"><li><span class="detail-time">行前-后勤</span><span>预约租车（2辆SUV，5/15机场取）</span></li><li><span class="detail-time">行前-后勤</span><span>预约贵阳酒店（喷水池，3晚）</span></li><li><span class="detail-time">行前-后勤</span><span>预约织金洞向导</span></li><li><span class="detail-time">行前-后勤</span><span>确认司机名单，安排拼车</span></li><li><span class="detail-time">行前-活动</span><span>预约黄果树门票（旺季限流，提前买）</span></li><li><span class="detail-time">行前-活动</span><span>预约西江苗寨门票+观光车</span></li><li><span class="detail-time">行中-活动</span><span>协调每天出发时间，召集全队</span></li><li><span class="detail-time">行前-活动</span><span>安排全程餐饮（见上方餐饮表）</span></li>';
+            } else {
+                html += '全员 - 共同责任</h4><ul class="detail-list"><li><span class="detail-time">必带</span><span>身份证 / 驾驶证</span></li><li><span class="detail-time">必带</span><span>防晒霜 SPF50+</span></li><li><span class="detail-time">必带</span><span>雨衣（黄果树水帘洞）</span></li><li><span class="detail-time">必带</span><span>防滑鞋（探洞穿）</span></li><li><span class="detail-time">必带</span><span>外套（织金洞16℃）</span></li><li><span class="detail-time">必带</span><span>肠胃药</span></li>';
+            }
+            html += '</ul></div>';
+            document.getElementById('modal-body').innerHTML = html;
+            document.getElementById('modal-img').src = 'images/hero.jpg';
+            document.getElementById('modal-day').textContent = '职责说明';
+            document.getElementById('modal-title').textContent = type === 'caiwu' ? '财务 - 明杳' : type === 'houqin' ? '后勤+活动 - 羽茸' : '全员参与';
+            document.getElementById('modal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function openBudget() {
+            const budgetItems = [
+                { label: '门票', person: '全员AA', value: '¥480', note: '黄果树+织金洞+苗寨' },
+                { label: '餐饮', person: '全员AA', value: '¥800', note: '约¥200/天' },
+                { label: '租车+油费', person: '全员AA', value: '¥400', note: '2辆SUV' }
+            ];
+            
+            let html = `
+                <div class="budget-total">
+                    <div class="budget-total-label">人均预算（不含住宿和往返交通）</div>
+                    <div class="budget-total-value">¥1,680</div>
+                    <div class="budget-total-note">10人团队，总预算约 ¥16,800</div>
+                </div>
+                <div class="budget-grid>`;
+            
+            budgetItems.forEach(item => {
+                html += `
+                    <div class="budget-item">
+                        <div class="budget-item-label">${item.label}</div>
+                        <div class="budget-item-value">${item.value}<small>/人</small></div>
+                    </div>`;
+            });
+            
+            html += `</div>
+                <div class="detail-section">
+                    <h4><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>费用说明</h4>
+                    <div class="budget-detail-table">
+                        <div class="budget-detail-row"><span>门票总计</span><span>¥480/人（黄果树210+织金洞120+苗寨110+观光车40）</span></div>
+                        <div class="budget-detail-row"><span>餐饮</span><span>约¥800/人（4天早中晚）</span></div>
+                        <div class="budget-detail-row"><span>租车费用</span><span>2辆SUV约¥800/天 × 4天 = ¥3,200（人均¥320）</span></div>
+                        <div class="budget-detail-row"><span>油费预估</span><span>约¥800（人均¥80）</span></div>
+                        <div class="budget-detail-row"><span>明杳统一收取</span><span>¥1,680/人</span></div>
+                    </div>
+                </div>
+                <div class="detail-section">
+                    <h4><svg viewBox="0 0 24 24"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path></svg>付款流程</h4>
+                    <div class="budget-detail-table">
+                        <div class="budget-detail-row"><span>1. 行前</span><span>明杳统一收取团费 ¥1,680×10 = ¥16,800</span></div>
+                        <div class="budget-detail-row"><span>2. 行中</span><span>明杳支付门票、餐饮、租车油费</span></div>
+                        <div class="budget-detail-row"><span>3. 返程</span><span>结算总支出，多退少补</span></div>
+                    </div>
+                </div>`;
+            
+            document.getElementById('modal-body').innerHTML = html;
+            document.getElementById('modal-img').src = 'images/hero.jpg';
+            document.getElementById('modal-day').textContent = '预算明细';
+            document.getElementById('modal-title').textContent = '费用预算';
+            document.getElementById('modal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() { document.getElementById('modal').classList.remove('active'); document.body.style.overflow = ''; }
+        document.getElementById('modal').addEventListener('click', (e) => { if (e.target.id === 'modal') closeModal(); });
+    </script>
+</body>
+</html>
