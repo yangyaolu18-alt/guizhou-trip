@@ -598,9 +598,256 @@
 
         footer { padding: 40px 0; text-align: center; border-top: 1px solid var(--border); }
         footer p { font-size: 13px; color: var(--text-muted); }
+
+        /* Identity Modal */
+        .identity-modal {
+            position: fixed;
+            inset: 0;
+            background: rgba(12,15,10,0.95);
+            z-index: 2000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+        }
+
+        .identity-modal.hidden { display: none; }
+
+        .identity-card {
+            background: #141414;
+            border: 1px solid var(--border);
+            border-radius: 1.5rem;
+            padding: 40px;
+            max-width: 400px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .identity-card h2 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: var(--text);
+        }
+
+        .identity-card p {
+            font-size: 14px;
+            color: var(--text-muted);
+            margin-bottom: 24px;
+        }
+
+        .identity-input {
+            width: 100%;
+            padding: 14px 18px;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            color: var(--text);
+            font-size: 16px;
+            font-family: inherit;
+            text-align: center;
+            transition: all 0.2s;
+            margin-bottom: 16px;
+        }
+
+        .identity-input:focus {
+            outline: none;
+            border-color: var(--accent);
+            background: var(--accent-dim);
+        }
+
+        .identity-input::placeholder { color: var(--text-muted); }
+
+        .identity-btn {
+            width: 100%;
+            padding: 14px 24px;
+            background: var(--accent);
+            color: var(--bg);
+            border: none;
+            border-radius: 12px;
+            font-size: 15px;
+            font-weight: 600;
+            font-family: inherit;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .identity-btn:hover { transform: translateY(-1px); box-shadow: 0 4px 20px rgba(34,197,94,0.3); }
+
+        .identity-hint {
+            font-size: 12px;
+            color: var(--text-muted);
+            margin-top: 16px;
+        }
+
+        .identity-hint span { color: var(--accent); font-weight: 500; }
+
+        /* Role Display Page */
+        .role-display {
+            position: fixed;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(12,15,10,0.98) 0%, rgba(20,25,20,0.98) 100%);
+            z-index: 2000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .role-display.active { display: flex; }
+
+        .role-card {
+            width: 70%;
+            max-width: 500px;
+            height: auto;
+            min-height: 50vh;
+            background: rgba(20,20,20,0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(34,197,94,0.3);
+            border-radius: 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 60px 50px;
+            position: relative;
+            box-shadow:
+                0 0 60px rgba(34,197,94,0.15),
+                0 25px 50px rgba(0,0,0,0.5),
+                inset 0 1px 0 rgba(255,255,255,0.1);
+            animation: cardGlow 3s ease-in-out infinite;
+        }
+
+        @keyframes cardGlow {
+            0%, 100% { box-shadow: 0 0 60px rgba(34,197,94,0.15), 0 25px 50px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.1); }
+            50% { box-shadow: 0 0 80px rgba(34,197,94,0.25), 0 25px 50px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.1); }
+        }
+
+        .role-badge {
+            font-size: 1rem;
+            font-weight: 700;
+            letter-spacing: 0.3em;
+            color: var(--bg);
+            padding: 12px 36px;
+            background: linear-gradient(135deg, var(--accent) 0%, #4ade80 100%);
+            border-radius: 100px;
+            margin-bottom: 32px;
+            animation: badgePulse 2s ease-in-out infinite;
+            text-transform: uppercase;
+        }
+
+        @keyframes badgePulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .role-name {
+            font-size: 4rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--accent) 0%, #86efac 50%, var(--text) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 20px;
+            text-align: center;
+            line-height: 1;
+            animation: nameGlow 3s ease-in-out infinite;
+        }
+
+        @keyframes nameGlow {
+            0%, 100% { filter: drop-shadow(0 0 20px rgba(34,197,94,0.5)); }
+            50% { filter: drop-shadow(0 0 40px rgba(34,197,94,0.8)); }
+        }
+
+        .role-title {
+            font-size: 1.8rem;
+            font-weight: 500;
+            color: var(--accent);
+            text-align: center;
+            position: relative;
+        }
+
+        .role-title::after {
+            content: '|';
+            animation: blink 1s step-end infinite;
+            margin-left: 4px;
+            color: var(--accent);
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        .role-divider {
+            width: 60%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--accent), transparent);
+            margin: 24px 0;
+        }
+
+        .role-hint {
+            position: absolute;
+            bottom: 30px;
+            font-size: 13px;
+            color: rgba(255,255,255,0.4);
+            animation: fadeInUp 0.5s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Welcome Page */
+        .welcome-page {
+            position: fixed;
+            inset: 0;
+            background: rgba(12,15,10,0.6);
+            z-index: 3000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .welcome-page.active { display: flex; }
+
+        .welcome-text {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--text);
+            text-align: center;
+        }
     </style>
 </head>
 <body>
+    <!-- Identity Modal -->
+    <div class="identity-modal" id="identityModal">
+        <div class="identity-card">
+            <h2>欢迎来到贵州团建</h2>
+            <p>请输入你的花名，获取专属任务清单</p>
+            <input type="text" class="identity-input" id="identityInput" placeholder="输入你的花名" autocomplete="off">
+            <button class="identity-btn" onclick="submitIdentity()">确认身份</button>
+            <p class="identity-hint">提示：明杳、羽茸 或其他成员</p>
+        </div>
+    </div>
+
+    <!-- Role Display Page -->
+    <div class="role-display" id="roleDisplay" onclick="dismissRole()">
+        <div class="role-card">
+            <div class="role-badge" id="roleBadge"></div>
+            <div class="role-name" id="roleName"></div>
+            <div class="role-divider"></div>
+            <div class="role-title" id="roleTitle"></div>
+        </div>
+        <div class="role-hint">点击任意处继续</div>
+    </div>
+
+    <!-- Welcome Page -->
+    <div class="welcome-page" id="welcomePage">
+        <div class="welcome-text">欢迎您走进贵州之旅</div>
+    </div>
+
     <!-- Hero -->
     <section class="hero">
         <div class="hero-bg"><video src="waterfall.mp4" autoplay muted loop playsinline></video><div class="hero-gradient"></div></div>
@@ -805,19 +1052,29 @@
         }
 
         function openTeam(type) {
-            let html = '<div class="detail-section"><h4><svg viewBox="0 0 24 24"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path></svg>';
+            let html = '';
+
+            // 明杳：财务 + 全员
             if (type === 'caiwu') {
-                html += '明杳 - 财务职责</h4><ul class="detail-list"><li><span class="detail-time">行前</span><span>统一收取团费</span></li><li><span class="detail-time">行前</span><span>支付住宿、租车、门票费用</span></li><li><span class="detail-time">行中</span><span>记录每日支出</span></li><li><span class="detail-time">返程</span><span>结算，多退少补</span></li>';
-            } else if (type === 'houqin') {
-                html += '羽茸 - 后勤+活动职责</h4><ul class="detail-list"><li><span class="detail-time">行前-后勤</span><span>预约租车（2辆SUV，5/15机场取）</span></li><li><span class="detail-time">行前-后勤</span><span>预约贵阳酒店（喷水池，3晚）</span></li><li><span class="detail-time">行前-后勤</span><span>预约织金洞向导</span></li><li><span class="detail-time">行前-后勤</span><span>确认司机名单，安排拼车</span></li><li><span class="detail-time">行前-活动</span><span>预约黄果树门票（旺季限流，提前买）</span></li><li><span class="detail-time">行前-活动</span><span>预约西江苗寨门票+观光车</span></li><li><span class="detail-time">行中-活动</span><span>协调每天出发时间，召集全队</span></li><li><span class="detail-time">行前-活动</span><span>安排全程餐饮（见上方餐饮表）</span></li>';
-            } else {
-                html += '全员 - 共同责任</h4><ul class="detail-list"><li><span class="detail-time">必带</span><span>身份证 / 驾驶证</span></li><li><span class="detail-time">必带</span><span>防晒霜 SPF50+</span></li><li><span class="detail-time">必带</span><span>雨衣（黄果树水帘洞）</span></li><li><span class="detail-time">必带</span><span>防滑鞋（探洞穿）</span></li><li><span class="detail-time">必带</span><span>外套（织金洞16℃）</span></li><li><span class="detail-time">必带</span><span>肠胃药</span></li>';
+                html += '<div class="detail-section"><h4><svg viewBox="0 0 24 24"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path></svg>财务职责</h4><ul class="detail-list"><li><span class="detail-time">行前</span><span>统一收取团费</span></li><li><span class="detail-time">行前</span><span>支付住宿、租车、门票费用</span></li><li><span class="detail-time">行中</span><span>记录每日支出</span></li><li><span class="detail-time">返程</span><span>结算，多退少补</span></li></ul></div>';
+                html += '<div class="detail-section"><h4><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>全员任务（也需关注）</h4><ul class="detail-list"><li><span class="detail-time">必带</span><span>身份证 / 驾驶证</span></li><li><span class="detail-time">必带</span><span>防晒霜 SPF50+</span></li><li><span class="detail-time">必带</span><span>雨衣（黄果树水帘洞）</span></li><li><span class="detail-time">必带</span><span>防滑鞋（探洞穿）</span></li><li><span class="detail-time">必带</span><span>外套（织金洞16℃）</span></li><li><span class="detail-time">必带</span><span>肠胃药</span></li></ul></div>';
+                document.getElementById('modal-title').textContent = '财务 - 明杳';
             }
-            html += '</ul></div>';
+            // 羽茸：后勤+活动 + 全员
+            else if (type === 'houqin') {
+                html += '<div class="detail-section"><h4><svg viewBox="0 0 24 24"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path></svg>后勤+活动职责</h4><ul class="detail-list"><li><span class="detail-time">行前-后勤</span><span>预约租车（2辆SUV，5/15机场取）</span></li><li><span class="detail-time">行前-后勤</span><span>预约贵阳酒店（喷水池，3晚）</span></li><li><span class="detail-time">行前-后勤</span><span>预约织金洞向导</span></li><li><span class="detail-time">行前-后勤</span><span>确认司机名单，安排拼车</span></li><li><span class="detail-time">行前-活动</span><span>预约黄果树门票（旺季限流，提前买）</span></li><li><span class="detail-time">行前-活动</span><span>预约西江苗寨门票+观光车</span></li><li><span class="detail-time">行中-活动</span><span>协调每天出发时间，召集全队</span></li><li><span class="detail-time">行前-活动</span><span>安排全程餐饮（见上方餐饮表）</span></li></ul></div>';
+                html += '<div class="detail-section"><h4><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>全员任务（也需关注）</h4><ul class="detail-list"><li><span class="detail-time">必带</span><span>身份证 / 驾驶证</span></li><li><span class="detail-time">必带</span><span>防晒霜 SPF50+</span></li><li><span class="detail-time">必带</span><span>雨衣（黄果树水帘洞）</span></li><li><span class="detail-time">必带</span><span>防滑鞋（探洞穿）</span></li><li><span class="detail-time">必带</span><span>外套（织金洞16℃）</span></li><li><span class="detail-time">必带</span><span>肠胃药</span></li></ul></div>';
+                document.getElementById('modal-title').textContent = '后勤+活动 - 羽茸';
+            }
+            // 其他：全员
+            else {
+                html += '<div class="detail-section"><h4><svg viewBox="0 0 24 24"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path></svg>全员任务</h4><ul class="detail-list"><li><span class="detail-time">必带</span><span>身份证 / 驾驶证</span></li><li><span class="detail-time">必带</span><span>防晒霜 SPF50+</span></li><li><span class="detail-time">必带</span><span>雨衣（黄果树水帘洞）</span></li><li><span class="detail-time">必带</span><span>防滑鞋（探洞穿）</span></li><li><span class="detail-time">必带</span><span>外套（织金洞16℃）</span></li><li><span class="detail-time">必带</span><span>肠胃药</span></li></ul></div>';
+                document.getElementById('modal-title').textContent = '全员任务';
+            }
+
             document.getElementById('modal-body').innerHTML = html;
             document.getElementById('modal-img').src = 'images/hero.jpg';
             document.getElementById('modal-day').textContent = '职责说明';
-            document.getElementById('modal-title').textContent = type === 'caiwu' ? '财务 - 明杳' : type === 'houqin' ? '后勤+活动 - 羽茸' : '全员参与';
             document.getElementById('modal').classList.add('active');
             document.body.style.overflow = 'hidden';
         }
@@ -873,8 +1130,78 @@
             document.body.style.overflow = 'hidden';
         }
 
-        function closeModal() { document.getElementById('modal').classList.remove('active'); document.body.style.overflow = ''; }
+        let hasShownWelcome = false;
+
+        function closeModal() {
+            document.getElementById('modal').classList.remove('active');
+            document.body.style.overflow = '';
+
+            // 只有在第一次关闭任务清单时显示欢迎语
+            if (!hasShownWelcome) {
+                hasShownWelcome = true;
+                const welcomePage = document.getElementById('welcomePage');
+                welcomePage.classList.add('active');
+                setTimeout(() => {
+                    welcomePage.classList.remove('active');
+                }, 1500);
+            }
+        }
         document.getElementById('modal').addEventListener('click', (e) => { if (e.target.id === 'modal') closeModal(); });
+
+        /* Identity Modal Logic */
+        let currentIdentity = '';
+
+        function submitIdentity() {
+            const name = document.getElementById('identityInput').value.trim();
+
+            if (!name) {
+                alert('请输入花名');
+                return;
+            }
+
+            currentIdentity = name;
+            document.getElementById('identityModal').classList.add('hidden');
+
+            // 显示身份展示页
+            const roleDisplay = document.getElementById('roleDisplay');
+            const roleBadge = document.getElementById('roleBadge');
+            const roleName = document.getElementById('roleName');
+            const roleTitle = document.getElementById('roleTitle');
+
+            if (name === '明杳') {
+                roleBadge.textContent = 'CFO';
+                roleName.textContent = '明杳';
+                roleTitle.textContent = '财务大臣';
+            } else if (name === '羽茸') {
+                roleBadge.textContent = 'CEO';
+                roleName.textContent = '羽茸';
+                roleTitle.textContent = '执行长官';
+            } else {
+                roleBadge.textContent = 'FOLLOWER';
+                roleName.textContent = name;
+                roleTitle.textContent = '随从者';
+            }
+
+            roleDisplay.classList.add('active');
+        }
+
+        function dismissRole() {
+            document.getElementById('roleDisplay').classList.remove('active');
+
+            // 根据身份显示对应任务
+            if (currentIdentity === '明杳') {
+                openTeam('caiwu');
+            } else if (currentIdentity === '羽茸') {
+                openTeam('houqin');
+            } else {
+                openTeam('all');
+            }
+        }
+
+        // 回车确认
+        document.getElementById('identityInput').addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') submitIdentity();
+        });
     </script>
 </body>
 </html>
